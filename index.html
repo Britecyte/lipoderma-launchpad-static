@@ -65,9 +65,94 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 <link rel="stylesheet" href="assets/uploads/breakdance/css/post-12.css" />
 <!-- [/EOF HEADER ASSETS] -->
-    </head>
+    
+<style id="launchpad-password-gate-style">
+  html.launchpad-locked body > :not(#launchpad-password-gate) { display: none !important; }
+  #launchpad-password-gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: #9e99cb;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  #launchpad-password-gate .gate-card {
+    width: min(460px, 100%);
+    padding: 34px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 24px 70px rgba(36, 33, 63, 0.22);
+    text-align: center;
+  }
+  #launchpad-password-gate h1 { margin: 0 0 10px; color: #202033; font-size: 26px; }
+  #launchpad-password-gate p { margin: 0 0 22px; color: #5d5d70; line-height: 1.5; }
+  #launchpad-password-gate input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 1px solid #c8c7d8;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  #launchpad-password-gate button {
+    width: 100%;
+    padding: 14px 18px;
+    border: 0;
+    border-radius: 12px;
+    background: #2b2b46;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  #launchpad-password-gate .gate-error { display: none; margin-top: 14px; color: #9e2730; font-weight: 700; }
+</style>
+<script>
+  if (sessionStorage.getItem("lipodermaLaunchpadUnlocked") !== "true") {
+    document.documentElement.classList.add("launchpad-locked");
+  }
+</script>
+
+</head>
     
     <body class="home page-template-default page page-id-12 breakdance">
+
+<div id="launchpad-password-gate" aria-label="Password protected content">
+  <form class="gate-card" id="launchpad-password-form">
+    <h1>Lipoderma Launchpad</h1>
+    <p>This content is password protected. Please enter the password to continue.</p>
+    <input id="launchpad-password-input" type="password" autocomplete="current-password" placeholder="Password" autofocus>
+    <button type="submit">Enter</button>
+    <div class="gate-error" id="launchpad-password-error">Incorrect password. Please try again.</div>
+  </form>
+</div>
+<script>
+  (function () {
+    var form = document.getElementById("launchpad-password-form");
+    var input = document.getElementById("launchpad-password-input");
+    var error = document.getElementById("launchpad-password-error");
+    if (sessionStorage.getItem("lipodermaLaunchpadUnlocked") === "true") {
+      document.documentElement.classList.remove("launchpad-locked");
+      var gate = document.getElementById("launchpad-password-gate");
+      if (gate) gate.remove();
+      return;
+    }
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (input.value === "Respectthefat789") {
+        sessionStorage.setItem("lipodermaLaunchpadUnlocked", "true");
+        document.documentElement.classList.remove("launchpad-locked");
+        document.getElementById("launchpad-password-gate").remove();
+      } else {
+        error.style.display = "block";
+        input.select();
+      }
+    });
+  })();
+</script>
+
             <section class="bde-section-12-100 bde-section">
   
   
