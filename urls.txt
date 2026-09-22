@@ -1,0 +1,14 @@
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/plugin/global-scripts/breakdance-utils.js?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/plugin/themeless/normalize.min.css
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/advanced-tabs@1/advanced-tabs.js?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/breakdance-advanced-accordion/accordion.css?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/breakdance-advanced-accordion/breakdance-advanced-accordion.js?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/custom-tabs@1/tabs.css?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/custom-tabs@1/tabs.js?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/plugins/breakdance/subplugins/breakdance-elements/dependencies-files/lozard@1/lozad.min.js?bd_ver=2.6.1
+https://launchpad.lipoderma.com/wp-content/uploads/breakdance/css/global-settings.css?v=4cedce8960137abf77af872f29ba3f4e
+https://launchpad.lipoderma.com/wp-content/uploads/breakdance/css/post-12-defaults.css?v=bb693b2a5f7db00cbfca379c3684b7e7
+https://launchpad.lipoderma.com/wp-content/uploads/breakdance/css/post-12.css?v=9289af44c0410728c40f8d719f509a5a
+https://launchpad.lipoderma.com/wp-content/uploads/breakdance/css/presets.css?v=018b6aef91a4c32b53c8faec533b281d
+https://launchpad.lipoderma.com/wp-content/uploads/breakdance/css/selectors.css?v=5e09e1ad4f9ac9344f891561a9ea1a45
+https://launchpad.lipoderma.com/wp-includes/css/dist/block-library/style.min.css?ver=6.7.1
