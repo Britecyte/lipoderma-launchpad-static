@@ -10,6 +10,8 @@ Until the Rails app replaces this page:
 
 `index.html` links training media directly to Bunny, not Render, so library traffic does not depend on the Render disk or `/media` redirects.
 
+**Password gate (temporary):** Client-side only (`sessionStorage` per tab). It hides the library from casual visitors but does not protect Bunny URLs in the HTML. Remove or replace before treating the page as access-controlled.
+
 **Password gate performance:** The full library lives in a `<template>` until unlock. Videos use `data-media-src` and only fetch from Bunny when the user presses play. Breakdance CSS/JS loads after unlock, not on the gate screen.
 
 When going live on Rails: point DNS (or a subdomain like `app.launchpad.lipoderma.com`) to Render, set `APP_HOST`, and retire or redirect this static repo as needed.
