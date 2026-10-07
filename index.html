@@ -9,6 +9,8 @@
 
     
 <style id="launchpad-password-gate-style">
+  html, body { margin: 0; min-height: 100%; }
+  html.launchpad-locked body { background: #9e99cb; }
   #launchpad-password-gate {
     min-height: 100vh;
     display: flex;
@@ -51,9 +53,15 @@
   #launchpad-password-gate .gate-error { display: none; margin-top: 14px; color: #9e2730; font-weight: 700; }
 </style>
 <script>
-  if (sessionStorage.getItem("lipodermaLaunchpadUnlocked") !== "true") {
-    document.documentElement.classList.add("launchpad-locked");
-  }
+  (function () {
+    try {
+      if (sessionStorage.getItem("lipodermaLaunchpadUnlocked") !== "true") {
+        document.documentElement.classList.add("launchpad-locked");
+      }
+    } catch (e) {
+      document.documentElement.classList.add("launchpad-locked");
+    }
+  })();
 </script>
 
 </head>
@@ -106,26 +114,43 @@
   function mountLaunchpadContent() {
     var root = document.getElementById("launchpad-root");
     var tpl = document.getElementById("launchpad-content");
-    if (!root || !tpl || root.childElementCount) return;
+    if (!root || !tpl || root.childElementCount) return false;
     root.appendChild(tpl.content.cloneNode(true));
     bindDeferredVideos(root);
     loadLaunchpadScripts(LAUNCHPAD_SCRIPT_URLS).then(function () {
       document.dispatchEvent(new Event("launchpad-content-mounted"));
+    }).catch(function (err) {
+      console.error("Launchpad scripts failed to load", err);
     });
+    return root.childElementCount > 0;
   }
   function unlockLaunchpad() {
-    sessionStorage.setItem("lipodermaLaunchpadUnlocked", "true");
-    document.documentElement.classList.remove("launchpad-locked");
     var gate = document.getElementById("launchpad-password-gate");
+    var mounted = mountLaunchpadContent();
+    if (!mounted) {
+      try { sessionStorage.removeItem("lipodermaLaunchpadUnlocked"); } catch (e) {}
+      if (gate) gate.style.display = "flex";
+      document.documentElement.classList.add("launchpad-locked");
+      return false;
+    }
+    try { sessionStorage.setItem("lipodermaLaunchpadUnlocked", "true"); } catch (e) {}
+    document.documentElement.classList.remove("launchpad-locked");
     if (gate) gate.remove();
-    mountLaunchpadContent();
+    return true;
   }
   var form = document.getElementById("launchpad-password-form");
   var input = document.getElementById("launchpad-password-input");
   var error = document.getElementById("launchpad-password-error");
-  if (sessionStorage.getItem("lipodermaLaunchpadUnlocked") === "true") {
-    unlockLaunchpad();
-  } else if (form) {
+  var resume = false;
+  try {
+    resume = sessionStorage.getItem("lipodermaLaunchpadUnlocked") === "true";
+  } catch (e) {}
+  if (resume) {
+    if (!unlockLaunchpad()) {
+      resume = false;
+    }
+  }
+  if (!resume && form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (input.value === "Respectthefat789") {
